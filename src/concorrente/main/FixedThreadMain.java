@@ -31,6 +31,10 @@ public class FixedThreadMain {
 			throw new IllegalArgumentException("Não foi possivel ler os argumentos. Digite dois valores maiores que 0.");
 		}		
 		
+		if (numeroTermos >=35) {
+			throw new IllegalArgumentException("Por favor, digite um número menor que 35.");
+		}	
+		
 		// Criar Classes 
 		ExecutorService	executor = Executors.newFixedThreadPool(numeroThreads);
 		List<Future<Double>> resultados = new ArrayList<Future<Double>>();

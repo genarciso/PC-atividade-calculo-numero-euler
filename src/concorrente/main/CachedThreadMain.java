@@ -29,6 +29,10 @@ public class CachedThreadMain {
 			throw new IllegalArgumentException("Não foi possivel ler esse argumento.  Digite um número maior que 0.");
 		}	
 		
+		if (numeroTermos >=35) {
+			throw new IllegalArgumentException("Por favor, digite um número menor que 35.");
+		}	
+		
 		// Criar Classes 
 		ExecutorService	executor = Executors.newCachedThreadPool();
 		List<Future<Double>> resultados = new ArrayList<Future<Double>>();
