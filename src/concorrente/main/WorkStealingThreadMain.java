@@ -32,10 +32,6 @@ public class WorkStealingThreadMain {
 			throw new IllegalArgumentException("Não foi possivel ler esse argumento. Digite um número maior que .");
 		}	
 		
-		//if (numeroTermos >=35) {
-		//	throw new IllegalArgumentException("Por favor, digite um número menor que 35.");
-		//}	
-		
 		// Criar Classes 
 		ExecutorService	executor = Executors.newWorkStealingPool();
 		List<Future<Double>> resultados = new ArrayList<Future<Double>>();
