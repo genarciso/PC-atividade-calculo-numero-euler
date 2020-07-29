@@ -13,6 +13,7 @@ ___
 * O programa deve ser capaz de realizar o cálculo do número de euler mediante uma série infinita utilizando threads independentes e concorrentes. 
 * Devem ser utilizadas e comparadas thread pools de diferentes tipos disponibilizados pelo framework Executor e sua classe Executors.(fixed, cached e work stealing thread pools).
 * Deverá ser verificado e informado na saída padrão quantas threads estão sendo utilizadas e o tempo de execução do programa.
+
 ___
 ## Metodologia:
 Utilizamos o ExecutorService para implementar os 3 programas distintos e empregamos os tipos Callable e Future para facilitar a distribuição das tarefas de forma concorrente. Para computar o total de threads que foram usadas, foi aplicado o método Thread.activeCount(). E para avaliar o tempo de execução manipulamos o método System.currentTimeMillis().
