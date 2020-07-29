@@ -14,6 +14,9 @@ public class WorkStealingThreadMain {
 
 	public static void main(String[] args) {
 		
+		// Calcular tempo inicial
+		long tempoInicial = System.currentTimeMillis();
+		
 		// Criar variáveis
 		double numeroEuler = 0.0;
 		int numeroTermos = -1;
@@ -29,9 +32,9 @@ public class WorkStealingThreadMain {
 			throw new IllegalArgumentException("Não foi possivel ler esse argumento. Digite um número maior que .");
 		}	
 		
-		if (numeroTermos >=35) {
-			throw new IllegalArgumentException("Por favor, digite um número menor que 35.");
-		}	
+		//if (numeroTermos >=35) {
+		//	throw new IllegalArgumentException("Por favor, digite um número menor que 35.");
+		//}	
 		
 		// Criar Classes 
 		ExecutorService	executor = Executors.newWorkStealingPool();
@@ -58,11 +61,14 @@ public class WorkStealingThreadMain {
 			executor.shutdown();
 		}
 		
+		// Calcular tempo de execução
+		long tempoFinal = System.currentTimeMillis() - tempoInicial;
+		
 		// Imprimir resultado
 		System.out.println("\n---- Work Stealing Thread Pool ----");
 		System.out.printf("Foram utilizadas %d threads nessa execução \n", activeThread);
 		System.out.printf("O resultado do número de Euler com n = %d foi: %s \n", numeroTermos, String.valueOf(numeroEuler));
-
+		System.out.println("Tempo de Execução: " + tempoFinal + " ms \n");
 	}
 
 }
