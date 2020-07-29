@@ -12,7 +12,8 @@ public class Fatores implements Callable<Double> {
 	
 	@Override
 	public Double call() throws Exception {
-		
+		Thread currentThread = Thread.currentThread();
+		System.out.printf("Thread %s está calculando índice %d ... \n",currentThread.getId(), this.indice);
 		return 1.00 / calcularFatorial(indice);
 	}
 	

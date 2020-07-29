@@ -13,18 +13,41 @@ import concorrente.threads.Fatores;
 public class WorkStealingThreadMain {
 
 	public static void main(String[] args) {
+		
+		// Criar variáveis
 		double numeroEuler = 0.0;
-		int numeroTermos = Integer.parseInt(args[0]);
-	
+		int numeroTermos = -1;
+		
+		// Ler Argumentos
+		try {
+			 numeroTermos = Integer.parseInt(args[0]);
+		} catch (Exception e) {
+			throw new IllegalArgumentException("Não foi possivel ler esse argumento. Digite um número positivo.");
+		}
+
+		if (numeroTermos <= 0) {
+			throw new IllegalArgumentException("Não foi possivel ler esse argumento. Digite um número maior que .");
+		}	
+		
+		if (numeroTermos >=35) {
+			throw new IllegalArgumentException("Por favor, digite um número menor que 35.");
+		}	
+		
+		// Criar Classes 
 		ExecutorService	executor = Executors.newWorkStealingPool();
 		List<Future<Double>> resultados = new ArrayList<Future<Double>>();
 
+		// Executar tarefa do cálculo do fatorial
 		for (int i = 0; i < numeroTermos; i++) {
 			Callable<Double> calculoNumero = new Fatores(i);
 			Future<Double> termo = executor.submit(calculoNumero);
 			resultados.add(termo);
 		}
-
+		
+		// Computar Total de Threads
+		int activeThread = Thread.activeCount();
+		
+		// Somatório dos valores calculados
 		try {
 			for (Future<Double> future : resultados) {
 				numeroEuler += future.get();
@@ -34,8 +57,11 @@ public class WorkStealingThreadMain {
 		} finally {
 			executor.shutdown();
 		}
-		System.out.println("---- Work Stealing Thread Pool ----");
-		System.out.printf("O resultado do número de Euler com %d termos foi: %f\n", numeroTermos, numeroEuler);
+		
+		// Imprimir resultado
+		System.out.println("\n---- Work Stealing Thread Pool ----");
+		System.out.printf("Foram utilizadas %d threads nessa execução \n", activeThread);
+		System.out.printf("O resultado do número de Euler com n = %d foi: %s \n", numeroTermos, String.valueOf(numeroEuler));
 
 	}
 
